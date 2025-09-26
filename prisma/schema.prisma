@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Client {
+  idclient    Int            @id @default(autoincrement())
+  nom         String
+  email       String         @unique
+  telefon     String
+  contrasenya String
+  reservas    Reserva[]
+  pedidos     Pedido[]
+
+  @@map("client")
+}
+
+model Reserva {
+  idreserva    Int      @id @default(autoincrement())
+  idclient     Int
+  data         DateTime @db.Timestamp(6)
+  num_persones Int
+  estado       String
+  client       Client   @relation(fields: [idclient], references: [idclient])
+
+  @@map("reserva")
+}
+
+model Pedido {
+  idpedido    Int            @id @default(autoincrement())
+  idclient    Int
+  data        DateTime       @db.Date
+  total       Decimal        @db.Decimal(10, 2)
+  estado      String
+  metode_pago String
+  client      Client         @relation(fields: [idclient], references: [idclient])
+  detalls     DetallPedido[]
+
+  @@map("pedido")
+}
+
+model DetallPedido {
+  iddetall   Int       @id @default(autoincrement())
+  idpedido   Int
+  idproducte Int
+  quantitat  Int
+  subtotal   Decimal   @db.Decimal(10, 2)
+  pedido     Pedido    @relation(fields: [idpedido], references: [idpedido])
+  producte   Producte  @relation(fields: [idproducte], references: [idproducte])
+
+  @@map("detall_pedido")
+}
+
+model Producte {
+  idproducte Int         @id @default(autoincrement())
+  nom        String
+  preu       Decimal      @db.Decimal(10, 2)
+  idcategoria Int
+  disponible Boolean
+  categoria  Categoria    @relation(fields: [idcategoria], references: [idcategoria])
+  detalls    DetallPedido[]
+
+  @@map("producte")
+}
+
+model Categoria {
+  idcategoria Int        @id @default(autoincrement())
+  nom         String
+  productes   Producte[]
+
+  @@map("categoria")
+}

@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+  --background: #1c1917;
+  --background-alt: #211d1b;
+  --foreground: #f5f5f4;
+  --foreground-muted: #d6d3d1;
+  --accent: #b91c1c;
+  --accent-muted: #dc2626;
+  --surface: #26211e;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-muted: var(--accent-muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #f5f5f4;
+    --background-alt: #e7e5e4;
+    --foreground: #1c1917;
+    --foreground-muted: #44403c;
+  }
+}
+
+body {
+  background: radial-gradient(circle at top, var(--background-alt), var(--background));
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-stone-700/70 bg-stone-900/70 p-6 shadow-xl backdrop-blur;
+  }
+
+  .button-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-red-700 px-4 py-2 font-medium text-stone-100 transition hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500;
+  }
+}
