@@ -52,7 +52,15 @@ export default function RootLayout({
           <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-10">{children}</main>
           <footer className="border-t border-stone-800/70 bg-stone-950/70">
             <div className="mx-auto w-full max-w-5xl px-4 py-4 text-sm text-stone-400">
-              Cas Pràctic 1 · Sergi Lucas · Derek Sanz · Soufiane Zemmah
+              Cas Pràctic 1 · Sergi Lucas · Derek Sanz · Soufiane Zemmah ·
+              <Link
+                className="ml-1 text-red-400 hover:text-red-300"
+                href="https://github.com/torturado/demostraciogbd"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Codi font a GitHub
+              </Link>
             </div>
           </footer>
         </div>

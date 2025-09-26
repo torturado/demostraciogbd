@@ -87,14 +87,22 @@ const sections = [
   {
     heading: "Webgrafia / Infografia",
     body: (
-      <p className="text-stone-300">
+      <p className="space-y-1 text-stone-300">
         <a
-          className="text-red-500 hover:text-red-500"
+          className="block text-red-500 hover:text-red-400"
           href="https://www.ibm.com/docs/es/imdm/11.6.0?topic=concepts-key-entity-attribute-entity-type"
           target="_blank"
           rel="noreferrer"
         >
           IBM: Key entity, attribute, entity type
+        </a>
+        <a
+          className="block text-red-500 hover:text-red-400"
+          href="https://github.com/torturado/demostraciogbd"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Codi font disponible a github.com/torturado/demostraciogbd
         </a>
       </p>
     ),
