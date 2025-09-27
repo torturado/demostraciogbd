@@ -113,7 +113,8 @@ export default async function handler(
     return res.status(405).json({ message: 'Método no permitido' })
   }
 
-  const queryType = req.query.type as QueryType | undefined
+  const typeParam = req.query.type
+  const queryType = typeof typeParam === 'string' ? (typeParam as QueryType) : undefined
 
   if (!queryType || !(queryType in PREPARED_QUERIES)) {
     return res.status(400).json({ message: 'Parámetro type no reconocido' })
