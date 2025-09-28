@@ -43,16 +43,20 @@ export default function HomePage() {
 
       <div className="grid gap-6 lg:grid-cols-4">
         {sections.map((section) => (
-          <Link key={section.title} href={section.href} className="card group h-full lg:col-span-2">
-            <div className="flex h-full flex-col">
-              <h2 className="text-xl font-semibold text-stone-100 group-hover:text-red-500">
-                {section.title}
-              </h2>
-              <p className="mt-3 text-sm text-stone-300/90">{section.description}</p>
-              <span className="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-medium text-red-500">
-                Accedir
-                <span aria-hidden>→</span>
-              </span>
+          <Link key={section.title} href={section.href} className="group relative block h-full lg:col-span-2">
+            <div className="uiverse-card">
+              <div className="uiverse-card__blob" aria-hidden />
+              <div className="uiverse-card__bg" aria-hidden />
+              <div className="uiverse-card__content">
+                <h2 className="text-xl font-semibold text-stone-100 transition-colors duration-300 group-hover:text-red-400">
+                  {section.title}
+                </h2>
+                <p className="text-sm text-stone-300/90">{section.description}</p>
+                <span className="mt-auto inline-flex items-center gap-1 text-sm font-medium text-red-400 transition-transform duration-300 group-hover:translate-x-1">
+                  Accedir
+                  <span aria-hidden>→</span>
+                </span>
+              </div>
             </div>
           </Link>
         ))}

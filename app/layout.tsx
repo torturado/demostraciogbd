@@ -52,15 +52,28 @@ export default function RootLayout({
           <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-10">{children}</main>
           <footer className="border-t border-stone-800/70 bg-stone-950/70">
             <div className="mx-auto w-full max-w-5xl px-4 py-4 text-sm text-stone-400">
-              Cas Pràctic 1 · Sergi Lucas · Derek Sanz · Soufiane Zemmah ·
-              <Link
-                className="ml-1 text-red-400 hover:text-red-300"
-                href="https://github.com/torturado/demostraciogbd"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Codi font a GitHub
-              </Link>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <span>Cas Pràctic 1 · Sergi Lucas · Derek Sanz · Soufiane Zemmah ·</span>
+                <Link
+                  href="https://github.com/torturado/demostraciogbd"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-md border border-stone-800 px-3 py-1 text-red-300 transition-colors hover:border-red-400 hover:text-red-200"
+                >
+                  <svg
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="h-5 w-5"
+                  >
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                  </svg>
+                  <span className="font-medium">GitHub</span>
+                </Link>
+              </div>
             </div>
           </footer>
         </div>

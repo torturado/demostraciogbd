@@ -47,6 +47,141 @@ a {
   }
 
   .button-primary {
-    @apply inline-flex items-center justify-center rounded-lg bg-red-700 px-4 py-2 font-medium text-stone-100 transition hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    padding: 12px 20px;
+    border: 0;
+    border-radius: 8px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    color: rgba(255, 240, 240, 0.85);
+    background: radial-gradient(ellipse at bottom, rgba(248, 113, 113, 0.6) 0%, rgba(185, 28, 28, 0.92) 55%, rgba(24, 10, 10, 1) 100%);
+    box-shadow: inset 0 0 0 1px rgba(248, 113, 113, 0.28), 0 14px 32px rgba(127, 29, 29, 0.45);
+    transition: transform 0.45s cubic-bezier(0.15, 0.83, 0.66, 1), box-shadow 0.45s cubic-bezier(0.15, 0.83, 0.66, 1), color 0.3s ease;
   }
+
+  .button-primary::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 18%;
+    width: 64%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(248, 113, 113, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(248, 113, 113, 0) 100%);
+    opacity: 0.25;
+    transition: opacity 0.45s cubic-bezier(0.15, 0.83, 0.66, 1);
+  }
+
+  .button-primary:hover {
+    color: rgba(255, 255, 255, 0.98);
+    transform: scale(1.04) translateY(-3px);
+    box-shadow: inset 0 0 0 1px rgba(248, 113, 113, 0.35), 0 20px 40px rgba(185, 28, 28, 0.5);
+  }
+
+  .button-primary:hover::before {
+    opacity: 0.65;
+  }
+
+  .button-primary:focus-visible {
+    outline: 2px solid rgba(248, 113, 113, 0.7);
+    outline-offset: 3px;
+  }
+
+  .button-primary:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+    box-shadow: inset 0 0 0 1px rgba(248, 113, 113, 0.18), 0 8px 24px rgba(68, 16, 16, 0.35);
+  }
+
+  .button-primary:disabled::before {
+    opacity: 0.2;
+  }
+}
+
+@layer components {
+  .uiverse-card {
+    /* tamaños como tu versión “grande” */
+    width: 100%;
+    height: auto;
+    min-height: 220px;
+
+    /* config común */
+    --pad: 6px;            /* margen interior del fondo */
+    --blob: 160px;         /* tamaño del blob */
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 20px 20px 60px rgba(22,19,16,.55), -20px -20px 60px rgba(44,38,35,.35);
+    background: transparent;
+    transition: transform .4s ease, box-shadow .4s ease;
+  }
+
+  .uiverse-card__bg {
+    position: absolute;
+    inset: var(--pad);
+    z-index: 1;
+    background: rgba(24,21,19,.85);
+    backdrop-filter: blur(24px);
+    border-radius: 10px;
+    outline: 1px solid rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.06);
+    transition: border-color .4s ease, outline-color .4s ease;
+    overflow: hidden;
+  }
+
+  /* Blob dentro del fondo para medir 100% contra el área útil */
+  .uiverse-card__blob {
+    position: absolute;
+    z-index: 1;
+    width: var(--blob);
+    height: var(--blob);
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #f87171, #b91c1c);
+    opacity: .8;
+    filter: blur(16px);
+    pointer-events: none;
+
+    /* arranque en esquina superior izquierda del fondo */
+    top: calc(var(--pad) - var(--blob) / 2);
+    left: calc(var(--pad) - var(--blob) / 2);
+    animation: uiverse-blob-walk 6s ease-in-out infinite;
+  }
+
+  .uiverse-card__content{
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    height: 100%;
+    width: 100%;
+    padding: 1.5rem;
+    color: var(--foreground, #fff);
+  }
+
+  .uiverse-card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 24px 60px rgba(0,0,0,.45);
+  }
+  .uiverse-card:hover .uiverse-card__bg{
+    border-color: rgba(248,113,113,.4);
+    outline-color: rgba(248,113,113,.35);
+  }
+}
+
+/* Movimiento esquina → esquina usando el tamaño real del contenedor */
+@keyframes uiverse-blob-walk {
+  0%   { top: calc(var(--pad) - var(--blob) / 2); left: calc(var(--pad) - var(--blob) / 2); }
+  25%  { top: calc(var(--pad) - var(--blob) / 2); left: calc(100% - var(--pad) - var(--blob) / 2); }
+  50%  { top: calc(100% - var(--pad) - var(--blob) / 2); left: calc(100% - var(--pad) - var(--blob) / 2); }
+  75%  { top: calc(100% - var(--pad) - var(--blob) / 2); left: calc(var(--pad) - var(--blob) / 2); }
+  100% { top: calc(var(--pad) - var(--blob) / 2); left: calc(var(--pad) - var(--blob) / 2); }
 }
