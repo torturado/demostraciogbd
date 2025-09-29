@@ -11,7 +11,7 @@ export function QueryResultTable({ rows, title }: QueryResultTableProps) {
   if (!rows.length) {
     return (
       <div className="card">
-        <p className="text-sm text-stone-300">Encara no s'ha executat cap consulta.</p>
+        <p className="text-sm text-stone-300">Encara no s&apos;ha executat cap consulta.</p>
       </div>
     )
   }

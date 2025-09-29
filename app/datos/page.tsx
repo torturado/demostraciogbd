@@ -136,7 +136,7 @@ export default async function DataPage() {
         <h1 className="text-3xl font-semibold text-stone-100">Visualització de taules</h1>
         <p className="max-w-3xl text-stone-300">
           Consulta tota la informació emmagatzemada a la base de dades: categories,
-          productes, clients, reserves i comandes. Utilitza aquesta vista com a referència abans d'inserir
+          productes, clients, reserves i comandes. Utilitza aquesta vista com a referència abans d&apos;inserir
           nous registres.
         </p>
       </header>
