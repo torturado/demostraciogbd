@@ -26,51 +26,51 @@ type QueryResponse = {
 const QUERIES: QueryConfig[] = [
   {
     type: 'clientes_reservas',
-    title: 'Clientes con sus reservas',
+    title: 'Clients amb les seves reserves',
     description:
-      'Une las tablas client y reserva para ver cuántas personas asistirán y el estado de cada reserva.',
+      "Uneix les taules client i reserva per veure quantes persones assistiran i l'estat de cada reserva.",
   },
   {
     type: 'total_gastado',
-    title: 'Total gastado por cliente',
+    title: 'Total gastat per client',
     description:
-      'Agrupa pedidos por cliente y muestra el acumulado económico usando SUM sobre la columna total.',
+      "Agrupa comandes per client i mostra l'import acumulat utilitzant SUM sobre la columna total.",
   },
   {
     type: 'clientes_sin_reservas',
-    title: 'Clientes sin reservas activas',
+    title: 'Clients sense reserves actives',
     description:
-      'LEFT JOIN entre client y reserva filtrando los nulos para detectar usuarios sin reservas.',
+      'LEFT JOIN entre client i reserva filtrant els nuls per detectar usuaris sense reserves.',
   },
   {
     type: 'categorias_productos',
-    title: 'Categorías con numero de productos',
+    title: 'Categories amb nombre de productes',
     description:
-      'LEFT JOIN entre categoria y producte para conocer cuántos artículos hay en cada categoría.',
+      'LEFT JOIN entre categoria i producte per conèixer quants articles hi ha a cada categoria.',
   },
   {
     type: 'productos_disponibles',
-    title: 'Productos disponibles hoy',
+    title: 'Productes disponibles avui',
     description:
-      'Listado de productos marcados como disponibles junto a su categoría y precio ordenados por nombre.',
+      'Llistat de productes marcats com a disponibles amb la seva categoria i preu ordenats per nom.',
   },
   {
     type: 'reservas_estado',
-    title: 'Reservas por estado',
+    title: 'Reserves per estat',
     description:
-      'Agrupación de reservas mostrando cuántas hay por estado y el último registro creado.',
+      "Agrupació de reserves mostrant quantes n'hi ha per estat i l'últim registre creat.",
   },
   {
     type: 'pedidos_resumen',
-    title: 'Resumen de pedidos',
+    title: 'Resum de comandes',
     description:
-      'Pedidos con total, método de pago y número de líneas usando joins con detall_pedido.',
+      'Comandes amb total, mètode de pagament i número de línies utilitzant joins amb detall_pedido.',
   },
   {
     type: 'detalles_pedido',
-    title: 'Detalle de pedidos',
+    title: 'Detall de comandes',
     description:
-      'Detalle granular de cada línea del pedido incluyendo nombre de producto y subtotal.',
+      'Detall granular de cada línia de la comanda incloent el nom del producte i el subtotal.',
   },
 ]
 
@@ -89,14 +89,14 @@ export default function QueriesPage() {
       const payload: QueryResponse & { message?: string } = await response.json()
 
       if (!response.ok) {
-        throw new Error(payload.message ?? 'No se pudo ejecutar la consulta')
+        throw new Error(payload.message ?? "No s'ha pogut executar la consulta")
       }
 
       setRows(payload.rows)
       setActiveQuery(queryType)
     } catch (error) {
       const message =
-        error instanceof Error ? error.message : 'Ha ocurrido un error inesperado'
+        error instanceof Error ? error.message : "S'ha produït un error inesperat"
       setError(message)
       setRows([])
       setActiveQuery(null)
@@ -112,11 +112,11 @@ export default function QueriesPage() {
   return (
     <div className="space-y-8">
       <header className="space-y-3">
-        <h1 className="text-3xl font-semibold text-stone-100">Consultas predefinidas</h1>
+        <h1 className="text-3xl font-semibold text-stone-100">Consultes predefinides</h1>
         <p className="max-w-3xl text-stone-300">
-          Pulsa sobre cualquiera de las consultas para lanzar la sentencia SQL preparada en el
-          servidor. El resultado se muestra en la tabla inferior y puedes utilizarlo para explicar
-          cómo funcionan los JOIN, las agregaciones y los filtros sobre la base de datos.
+          Clica sobre qualsevol de les consultes per executar la sentència SQL preparada al
+          servidor. El resultat es mostra a la taula inferior i el pots utilitzar per explicar
+          com funcionen les JOIN, les agregacions i els filtres sobre la base de dades.
         </p>
       </header>
 

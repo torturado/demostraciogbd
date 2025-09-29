@@ -19,7 +19,7 @@ export default async function handler(
 ) {
   if (req.method !== 'GET') {
     res.setHeader('Allow', ['GET'])
-    return res.status(405).json({ message: 'Método no permitido' })
+    return res.status(405).json({ message: 'Mètode no permès' })
   }
 
   try {
@@ -38,7 +38,7 @@ export default async function handler(
       })),
     })
   } catch (error) {
-    console.error('[products] Error al obtener los productos', error)
-    return res.status(500).json({ message: 'No se pudo obtener la lista de productos.' })
+    console.error('[products] Error en obtenir els productes', error)
+    return res.status(500).json({ message: "No s'ha pogut obtenir la llista de productes." })
   }
 }

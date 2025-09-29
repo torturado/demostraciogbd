@@ -16,7 +16,7 @@ export default async function handler(
 ) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', ['POST'])
-    return res.status(405).json({ message: 'Método no permitido' })
+    return res.status(405).json({ message: 'Mètode no permès' })
   }
 
   const { nom, preu, idcategoria, disponible } = req.body as InsertProductBody
@@ -37,7 +37,7 @@ export default async function handler(
     numericCategory <= 0 ||
     !hasAvailability
   ) {
-    return res.status(400).json({ message: 'Revisa los datos enviados en el formulario.' })
+    return res.status(400).json({ message: 'Revisa les dades enviades al formulari.' })
   }
 
   try {
@@ -50,9 +50,9 @@ export default async function handler(
       },
     })
 
-    return res.status(201).json({ message: 'Producto insertado correctamente.' })
+    return res.status(201).json({ message: 'Producte inserit correctament.' })
   } catch (error) {
-    console.error('[insert-product] Error al crear el producto:', error)
-    return res.status(500).json({ message: 'No se pudo insertar el producto.' })
+    console.error('[insert-product] Error en crear el producte:', error)
+    return res.status(500).json({ message: "No s'ha pogut inserir el producte." })
   }
 }

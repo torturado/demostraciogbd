@@ -23,7 +23,7 @@ export default async function handler(
 ) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', ['POST'])
-    return res.status(405).json({ message: 'Método no permitido' })
+    return res.status(405).json({ message: 'Mètode no permès' })
   }
 
   const { idclient, data, estado, metode_pago, detalls } = req.body as InsertPedidoBody
@@ -40,7 +40,7 @@ export default async function handler(
     !Array.isArray(detalls) ||
     detalls.length === 0
   ) {
-    return res.status(400).json({ message: 'Revisa los datos enviados en el formulario.' })
+    return res.status(400).json({ message: 'Revisa les dades enviades al formulari.' })
   }
 
   const parsedDetails = detalls.map((detail) => {
@@ -55,7 +55,7 @@ export default async function handler(
       Number.isNaN(numericQuantity) ||
       numericQuantity <= 0
     ) {
-      throw new Error('Detalle inválido')
+      throw new Error('Detall invàlid')
     }
 
     return {
@@ -72,7 +72,7 @@ export default async function handler(
     })
 
     if (products.length !== productIds.length) {
-      return res.status(400).json({ message: 'Alguno de los productos seleccionados no existe.' })
+      return res.status(400).json({ message: 'Algun dels productes seleccionats no existeix.' })
     }
 
     const priceMap = new Map(products.map((product) => [product.idproducte, product.preu]))
@@ -80,7 +80,7 @@ export default async function handler(
     const detailData = parsedDetails.map((detail) => {
       const price = priceMap.get(detail.idproducte)
       if (!price) {
-        throw new Error('Producto no encontrado')
+        throw new Error('Producte no trobat')
       }
 
       const subtotal = price.mul(detail.quantitat)
@@ -111,15 +111,15 @@ export default async function handler(
     })
 
     return res.status(201).json({
-      message: 'Pedido insertado correctamente.',
+      message: 'Comanda inserida correctament.',
       total: totalDecimal.toNumber(),
     })
   } catch (error) {
-    if (error instanceof Error && error.message === 'Detalle inválido') {
-      return res.status(400).json({ message: 'Revisa los datos de cada línea de pedido.' })
+    if (error instanceof Error && error.message === 'Detall invàlid') {
+      return res.status(400).json({ message: 'Revisa les dades de cada línia de la comanda.' })
     }
 
-    console.error('[insert-pedido] Error al crear el pedido:', error)
-    return res.status(500).json({ message: 'No se pudo insertar el pedido.' })
+    console.error('[insert-pedido] Error en crear la comanda:', error)
+    return res.status(500).json({ message: "No s'ha pogut inserir la comanda." })
   }
 }

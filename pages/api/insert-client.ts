@@ -17,7 +17,7 @@ export default async function handler(
 ) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', ['POST'])
-    return res.status(405).json({ message: 'Método no permitido' })
+    return res.status(405).json({ message: 'Mètode no permès' })
   }
 
   const { nom, email, telefon, contrasenya } = req.body as InsertClientBody
@@ -30,7 +30,7 @@ export default async function handler(
   ) {
     return res
       .status(400)
-      .json({ message: 'Todos los campos son obligatorios y deben ser de tipo texto.' })
+      .json({ message: 'Tots els camps són obligatoris i han de ser de tipus text.' })
   }
 
   try {
@@ -43,15 +43,15 @@ export default async function handler(
       },
     })
 
-    return res.status(201).json({ message: 'Cliente insertado correctamente.' })
+    return res.status(201).json({ message: 'Client inserit correctament.' })
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
       return res
         .status(409)
-        .json({ message: 'Este email ya está registrado. Prueba con otro correo.' })
+        .json({ message: 'Aquest correu ja està registrat. Prova amb una altra adreça.' })
     }
 
-    console.error('[insert-client] Error al crear el cliente:', error)
-    return res.status(500).json({ message: 'No se pudo insertar el cliente.' })
+    console.error('[insert-client] Error en crear el client:', error)
+    return res.status(500).json({ message: "No s'ha pogut inserir el client." })
   }
 }

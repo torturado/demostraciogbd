@@ -2,15 +2,15 @@ import Link from "next/link"
 
 const sections = [
   {
-    title: "Insertar dades",
+    title: "Inserir dades",
     description:
-      "Formulari per donar d'alta clients, productes o reserves en la base de dades.",
+      "Formularis per donar d'alta clients, productes i reserves a la base de dades.",
     href: "/insert",
   },
   {
     title: "Consultes SQL",
     description:
-      "Executa consultas SELECT predefinides i visualitza els resultats en taules dinàmiques.",
+      "Executa consultes SELECT predefinides i visualitza els resultats en taules dinàmiques.",
     href: "/queries",
   },
   {
@@ -31,12 +31,12 @@ export default function HomePage() {
   return (
     <div className="space-y-10">
       <section className="text-center">
-        <p className="text-sm uppercase tracking-wide text-red-500">Cas Pràctic 1</p>
+        <p className="text-sm uppercase tracking-wide text-red-500">Cas pràctic 1</p>
         <h1 className="mt-3 text-4xl font-semibold text-stone-100 md:text-5xl">
           Demostració base de dades · Restaurant Ñam Ñam
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-lg text-stone-300">
-          Explora com insertar informació, consultar dades rellevants i comprendre la
+          Explora com inserir informació, consultar dades rellevants i comprendre la
           estructura de la base de dades creada per al restaurant Ñam Ñam.
         </p>
       </section>

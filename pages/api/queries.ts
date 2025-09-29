@@ -20,26 +20,26 @@ type ApiResponse =
 const PREPARED_QUERIES: Record<QueryType, Prisma.Sql> = {
   clientes_reservas: Prisma.sql`
     SELECT
-      c.nom AS cliente,
-      r.data AS fecha,
-      r.num_persones AS personas,
-      r.estado AS estado
+      c.nom AS client,
+      r.data AS data,
+      r.num_persones AS persones,
+      r.estado AS estat
     FROM client c
     INNER JOIN reserva r ON c.idclient = r.idclient
     ORDER BY r.data DESC
   `,
   total_gastado: Prisma.sql`
     SELECT
-      c.nom AS cliente,
-      SUM(p.total) AS total_gastado
+      c.nom AS client,
+      SUM(p.total) AS total_gastat
     FROM client c
     INNER JOIN pedido p ON c.idclient = p.idclient
     GROUP BY c.nom
-    ORDER BY total_gastado DESC
+    ORDER BY total_gastat DESC
   `,
   clientes_sin_reservas: Prisma.sql`
     SELECT
-      c.nom AS cliente,
+      c.nom AS client,
       c.email AS email
     FROM client c
     LEFT JOIN reserva r ON c.idclient = r.idclient
@@ -49,7 +49,7 @@ const PREPARED_QUERIES: Record<QueryType, Prisma.Sql> = {
   categorias_productos: Prisma.sql`
     SELECT
       cat.nom AS categoria,
-      COUNT(prod.idproducte) AS total_productos,
+      COUNT(prod.idproducte) AS total_productes,
       SUM(CASE WHEN prod.disponible THEN 1 ELSE 0 END) AS disponibles
     FROM categoria cat
     LEFT JOIN producte prod ON cat.idcategoria = prod.idcategoria
@@ -58,8 +58,8 @@ const PREPARED_QUERIES: Record<QueryType, Prisma.Sql> = {
   `,
   productos_disponibles: Prisma.sql`
     SELECT
-      prod.nom AS producto,
-      prod.preu AS precio,
+      prod.nom AS producte,
+      prod.preu AS preu,
       cat.nom AS categoria,
       prod.disponible AS disponible
     FROM producte prod
@@ -69,21 +69,21 @@ const PREPARED_QUERIES: Record<QueryType, Prisma.Sql> = {
   `,
   reservas_estado: Prisma.sql`
     SELECT
-      r.estado AS estado,
-      COUNT(*) AS total_reservas,
-      MAX(r.data) AS ultima_reserva
+      r.estado AS estat,
+      COUNT(*) AS total_reserves,
+      MAX(r.data) AS darrera_reserva
     FROM reserva r
     GROUP BY r.estado
-    ORDER BY total_reservas DESC
+    ORDER BY total_reserves DESC
   `,
   pedidos_resumen: Prisma.sql`
     SELECT
-      p.idpedido AS pedido,
-      c.nom AS cliente,
+      p.idpedido AS comanda,
+      c.nom AS client,
       p.total AS total,
-      p.metode_pago AS metodo_pago,
-      p.estado AS estado,
-      COUNT(d.iddetall) AS lineas
+      p.metode_pago AS metode_pagament,
+      p.estado AS estat,
+      COUNT(d.iddetall) AS linies
     FROM pedido p
     LEFT JOIN client c ON p.idclient = c.idclient
     LEFT JOIN detall_pedido d ON d.idpedido = p.idpedido
@@ -92,10 +92,10 @@ const PREPARED_QUERIES: Record<QueryType, Prisma.Sql> = {
   `,
   detalles_pedido: Prisma.sql`
     SELECT
-      d.iddetall AS detalle,
-      p.idpedido AS pedido,
-      prod.nom AS producto,
-      d.quantitat AS cantidad,
+      d.iddetall AS detall,
+      p.idpedido AS comanda,
+      prod.nom AS producte,
+      d.quantitat AS quantitat,
       d.subtotal AS subtotal
     FROM detall_pedido d
     LEFT JOIN pedido p ON d.idpedido = p.idpedido
@@ -110,14 +110,14 @@ export default async function handler(
 ) {
   if (req.method !== 'GET') {
     res.setHeader('Allow', ['GET'])
-    return res.status(405).json({ message: 'Método no permitido' })
+    return res.status(405).json({ message: 'Mètode no permès' })
   }
 
   const typeParam = req.query.type
   const queryType = typeof typeParam === 'string' ? (typeParam as QueryType) : undefined
 
   if (!queryType || !(queryType in PREPARED_QUERIES)) {
-    return res.status(400).json({ message: 'Parámetro type no reconocido' })
+    return res.status(400).json({ message: 'Paràmetre type no reconegut' })
   }
 
   try {
@@ -128,7 +128,7 @@ export default async function handler(
 
     return res.status(200).json({ rows })
   } catch (error) {
-    console.error('[queries] Error al ejecutar la consulta', error)
-    return res.status(500).json({ message: 'No se pudo ejecutar la consulta solicitada.' })
+    console.error('[queries] Error en executar la consulta', error)
+    return res.status(500).json({ message: "No s'ha pogut executar la consulta sol·licitada." })
   }
 }

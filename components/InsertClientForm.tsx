@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { randomChoice, randomInt, randomPassword, randomPhoneNumber, slugify } from '@/lib/random'
+
 type ClientFormValues = {
   nom: string
   email: string
@@ -16,6 +18,25 @@ type SubmissionState =
   | { status: 'error'; message: string }
 
 const defaultState: SubmissionState = { status: 'idle' }
+
+const clientFirstNames = ['Laia', 'Marc', 'Sofia', 'Hug', 'Clara', 'Pau', 'Aina', 'Jordi']
+
+const clientLastNames = ['Martí', 'Llopis', 'Garcia', 'Soriano', 'Navarro', 'Costa', 'Ribas', 'Segarra']
+
+const buildRandomClient = (): ClientFormValues => {
+  const firstName = randomChoice(clientFirstNames)
+  const lastName = `${randomChoice(clientLastNames)} ${randomChoice(clientLastNames)}`
+  const nom = `${firstName} ${lastName}`
+  const baseEmail = slugify(`${firstName}.${lastName}`)
+  const email = `${baseEmail}${randomInt(1, 99)}@example.com`
+
+  return {
+    nom,
+    email,
+    telefon: randomPhoneNumber(),
+    contrasenya: randomPassword(),
+  }
+}
 
 export function InsertClientForm() {
   const [submission, setSubmission] = useState<SubmissionState>(defaultState)
@@ -41,26 +62,27 @@ export function InsertClientForm() {
       const payload = await response.json()
 
       if (!response.ok) {
-        throw new Error(payload?.message ?? "No s'ha pogut insertar el client")
+        throw new Error(payload?.message ?? "No s'ha pogut inserir el client")
       }
 
-      setSubmission({ status: 'success', message: 'Cliente insertado correctamente.' })
+      setSubmission({ status: 'success', message: 'Client inserit correctament.' })
       reset()
     } catch (error) {
       const message =
         error instanceof Error
           ? error.message
-          : 'Ha ocurrido un error inesperat. Intenta-ho de nou.'
+          : "S'ha produït un error inesperat. Torna-ho a intentar."
       setSubmission({ status: 'error', message })
     }
   }
 
+  const handleRandomFill = () => {
+    setSubmission(defaultState)
+    reset(buildRandomClient())
+  }
+
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="card space-y-5"
-      noValidate
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="card space-y-5" noValidate>
       <div>
         <label className="block text-sm font-medium text-stone-200" htmlFor="nom">
           Nom i cognoms
@@ -69,10 +91,10 @@ export function InsertClientForm() {
           id="nom"
           type="text"
           className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 placeholder:text-stone-500 focus:border-red-500 focus:outline-none"
-          placeholder="Laura Martínez"
+          placeholder="Laia Martí"
           {...register('nom', {
-            required: 'El nom es obligatori',
-            minLength: { value: 3, message: 'Introduce al menos 3 caracteres' },
+            required: 'El nom és obligatori',
+            minLength: { value: 3, message: 'Introdueix almenys 3 caràcters' },
           })}
         />
         {errors.nom ? (
@@ -90,10 +112,10 @@ export function InsertClientForm() {
           className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 placeholder:text-stone-500 focus:border-red-500 focus:outline-none"
           placeholder="laura@example.com"
           {...register('email', {
-            required: 'El email es obligatori',
+            required: 'El correu electrònic és obligatori',
             pattern: {
               value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-              message: 'Introduce un email vàlid',
+              message: 'Introdueix un correu electrònic vàlid',
             },
           })}
         />
@@ -113,8 +135,8 @@ export function InsertClientForm() {
             className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 placeholder:text-stone-500 focus:border-red-500 focus:outline-none"
             placeholder="612345678"
             {...register('telefon', {
-              required: 'El telèfon es obligatori',
-              minLength: { value: 9, message: 'Introduce 9 dígitos' },
+              required: 'El telèfon és obligatori',
+              minLength: { value: 9, message: 'Introdueix 9 dígits' },
             })}
           />
           {errors.telefon ? (
@@ -132,8 +154,8 @@ export function InsertClientForm() {
             className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 placeholder:text-stone-500 focus:border-red-500 focus:outline-none"
             placeholder="•••••••"
             {...register('contrasenya', {
-              required: 'La contrasenya es obligatoria',
-              minLength: { value: 6, message: 'Mínimo 6 caracteres' },
+              required: 'La contrasenya és obligatòria',
+              minLength: { value: 6, message: 'Mínim 6 caràcters' },
             })}
           />
           {errors.contrasenya ? (
@@ -142,9 +164,19 @@ export function InsertClientForm() {
         </div>
       </div>
 
-      <button className="button-primary w-full md:w-auto" disabled={isSubmitting} type="submit">
-        {isSubmitting ? 'Insertant...' : 'Insertar client'}
-      </button>
+      <div className="flex flex-col gap-3 md:flex-row">
+        <button
+          type="button"
+          className="button-primary w-full md:w-auto"
+          onClick={handleRandomFill}
+          disabled={isSubmitting}
+        >
+          Afegeix dades aleatòries
+        </button>
+        <button className="button-primary w-full md:w-auto" disabled={isSubmitting} type="submit">
+          {isSubmitting ? 'Insertant...' : 'Inserir client'}
+        </button>
+      </div>
 
       {submission.status === 'success' ? (
         <p className="text-sm text-emerald-300">{submission.message}</p>

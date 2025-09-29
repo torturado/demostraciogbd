@@ -13,13 +13,13 @@ export default async function handler(
 ) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', ['POST'])
-    return res.status(405).json({ message: 'Método no permitido' })
+    return res.status(405).json({ message: 'Mètode no permès' })
   }
 
   const { nom } = req.body as InsertCategoriaBody
 
   if (typeof nom !== 'string' || nom.trim().length < 3) {
-    return res.status(400).json({ message: 'Introduce un nombre de categoría válido.' })
+    return res.status(400).json({ message: 'Introdueix un nom de categoria vàlid.' })
   }
 
   try {
@@ -29,9 +29,9 @@ export default async function handler(
       },
     })
 
-    return res.status(201).json({ message: 'Categoría insertada correctamente.' })
+    return res.status(201).json({ message: 'Categoria inserida correctament.' })
   } catch (error) {
-    console.error('[insert-categoria] Error al crear la categoría:', error)
-    return res.status(500).json({ message: 'No se pudo insertar la categoría.' })
+    console.error('[insert-categoria] Error en crear la categoria:', error)
+    return res.status(500).json({ message: 'No s\'ha pogut inserir la categoria.' })
   }
 }

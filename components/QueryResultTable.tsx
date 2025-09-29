@@ -11,7 +11,7 @@ export function QueryResultTable({ rows, title }: QueryResultTableProps) {
   if (!rows.length) {
     return (
       <div className="card">
-        <p className="text-sm text-stone-300">Aún no se ha ejecutado ninguna consulta.</p>
+        <p className="text-sm text-stone-300">Encara no s'ha executat cap consulta.</p>
       </div>
     )
   }
@@ -60,7 +60,7 @@ function formatValue(value: TableRow[string]) {
 
   if (typeof value === 'string') {
     const isIsoDate = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(value)
-    return isIsoDate ? new Date(value).toLocaleString('es-ES') : value
+    return isIsoDate ? new Date(value).toLocaleString('ca-ES') : value
   }
 
   return value

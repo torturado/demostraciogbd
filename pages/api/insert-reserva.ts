@@ -16,7 +16,7 @@ export default async function handler(
 ) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', ['POST'])
-    return res.status(405).json({ message: 'Método no permitido' })
+    return res.status(405).json({ message: 'Mètode no permès' })
   }
 
   const { idclient, data, num_persones, estado } = req.body as InsertReservaBody
@@ -31,7 +31,7 @@ export default async function handler(
     !(dateValue instanceof Date && !Number.isNaN(dateValue.valueOf())) ||
     typeof estado !== 'string'
   ) {
-    return res.status(400).json({ message: 'Revisa los datos enviados en el formulario.' })
+    return res.status(400).json({ message: 'Revisa les dades enviades al formulari.' })
   }
 
   try {
@@ -44,9 +44,9 @@ export default async function handler(
       },
     })
 
-    return res.status(201).json({ message: 'Reserva insertada correctamente.' })
+    return res.status(201).json({ message: 'Reserva inserida correctament.' })
   } catch (error) {
-    console.error('[insert-reserva] Error al crear la reserva:', error)
-    return res.status(500).json({ message: 'No se pudo insertar la reserva.' })
+    console.error('[insert-reserva] Error en crear la reserva:', error)
+    return res.status(500).json({ message: "No s'ha pogut inserir la reserva." })
   }
 }

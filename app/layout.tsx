@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Restaurant Ñam Ñam · Demo GBD",
   description:
-    "Aplicació Next.js para demostrar insercions i consultas sobre la base de dades del restaurant Ñam Ñam.",
+    "Aplicació Next.js per demostrar insercions i consultes sobre la base de dades del restaurant Ñam Ñam.",
 }
 
 export default function RootLayout({
@@ -25,17 +25,17 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es">
+    <html lang="ca">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex min-h-screen flex-col`}>
         <div className="flex flex-1 flex-col bg-gradient-to-b from-[#211d1b] via-[#1c1917] to-[#161310]">
           <header className="border-b border-stone-800/70 bg-stone-950/70 backdrop-blur">
             <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-4">
               <Link href="/" className="text-lg font-semibold text-red-500">
-                Ñam Ñam · BD Demo
+                Ñam Ñam · Demo GBD
               </Link>
               <nav className="flex gap-4 text-sm font-medium text-stone-200">
                 <Link className="hover:text-red-400" href="/insert">
-                  Insertar dades
+                  Inserir dades
                 </Link>
                 <Link className="hover:text-red-400" href="/queries">
                   Consultes
