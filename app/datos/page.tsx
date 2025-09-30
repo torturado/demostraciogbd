@@ -1,3 +1,5 @@
+import { unstable_noStore as noStore } from "next/cache"
+
 import QueryResultTable from "@/components/QueryResultTable"
 import prisma from "@/lib/prisma"
 import { serializeQueryRows } from "@/lib/serialization"
@@ -6,7 +8,11 @@ export const metadata = {
   title: "Visualització de dades · Ñam Ñam",
 }
 
+export const dynamic = "force-dynamic"
+
 async function getData() {
+  noStore()
+
   const [categorias, productos, clientes, reservas, pedidos, detalles] = await Promise.all([
     prisma.categoria.findMany({ orderBy: { idcategoria: "asc" } }),
     prisma.producte.findMany({
