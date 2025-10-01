@@ -46,7 +46,7 @@ export default function InsertPage() {
         <div className="space-y-2">
           <h2 className="text-2xl font-semibold text-foreground">Productes</h2>
           <p className="max-w-3xl text-muted-foreground">
-            Dona d'alta articles amb preu, disponibilitat i categoria. Pots consultar els identificadors des de
+            Dona d&apos;alta articles amb preu, disponibilitat i categoria. Pots consultar els identificadors des de
             <Link className="text-primary transition-colors hover:text-primary/80" href="/datos">
               {" "}
               Visualitzar dades

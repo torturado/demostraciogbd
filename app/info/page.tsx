@@ -1,9 +1,9 @@
 const sections = [
   {
-    heading: "Necessitat d'enregistrament i entitats involucrades",
+    heading: "Necessitat d&apos;enregistrament i entitats involucrades",
     body: (
       <p className="text-muted-foreground">
-        El restaurant Ñam Ñam necessita digitalitzar la gestió de clients, reserves i comandes per donar resposta a l'auge del
+        El restaurant Ñam Ñam necessita digitalitzar la gestió de clients, reserves i comandes per donar resposta a l&apos;auge del
         servei a domicili. Per això definim entitats per a <strong>Client</strong>, <strong>Categoria</strong>,
         <strong> Producte</strong>, <strong>Comanda</strong>, <strong>Detall de comanda</strong> i <strong>Reserva</strong>,
         cadascuna amb les relacions necessàries per garantir la traçabilitat de les operacions.
@@ -14,8 +14,8 @@ const sections = [
     heading: "Relacions i esquema",
     body: (
       <p className="text-muted-foreground">
-        El model conceptual s'ha creat amb dbdiagram i després s'ha traduït a Prisma. Un client pot tenir múltiples reserves i
-        comandes; cada comanda es desglossa en línies a <em>detall_pedido</em>. Els productes depenen d'una categoria i
+        El model conceptual s&apos;ha creat amb dbdiagram i després s&apos;ha traduït a Prisma. Un client pot tenir múltiples reserves i
+        comandes; cada comanda es desglossa en línies a <em>detall_pedido</em>. Els productes depenen d&apos;una categoria i
         compartim claus foranes per mantenir la integritat entre totes les taules. Prisma genera el client TypeScript i aplica
         les migracions MySQL en base al fitxer
         <code className="rounded-md bg-background/70 px-2 py-1 text-xs text-muted-foreground/80">schema.prisma</code>.
@@ -26,7 +26,7 @@ const sections = [
     heading: "Inserció de dades",
     body: (
       <p className="text-muted-foreground">
-        La secció d'inserció disposa de formularis independents per a categories, clients, productes, reserves i comandes amb el
+        La secció d&apos;inserció disposa de formularis independents per a categories, clients, productes, reserves i comandes amb el
         seu detall. Cada formulari envia les dades als endpoints
         <code className="rounded-md bg-background/70 px-2 py-1 text-xs text-muted-foreground/80">/api/insert-*</code>, on
         Prisma valida i crea els registres corresponents per poder seguir el flux en temps real.
@@ -54,8 +54,8 @@ const sections = [
     heading: "Visualització interactiva",
     body: (
       <p className="text-muted-foreground">
-        La pestanya <strong>Visualitzar dades</strong> consolida totes les taules en un dashboard perquè l'equip tingui context
-        abans d'introduir nova informació. Les taules utilitzen el component
+        La pestanya <strong>Visualitzar dades</strong> consolida totes les taules en un dashboard perquè l&apos;equip tingui context
+        abans d&apos;introduir nova informació. Les taules utilitzen el component
         <code className="rounded-md bg-background/70 px-2 py-1 text-xs text-muted-foreground/80">QueryResultTable</code> per
         formatar valors, decimals i dates de manera consistent.
       </p>
@@ -75,7 +75,7 @@ const sections = [
     heading: "Menció honorífica",
     body: (
       <p className="text-muted-foreground">
-        Menció especial a <strong>ChatGPT Codex</strong> per fer el disseny d'aquesta demostració web.
+        Menció especial a <strong>ChatGPT Codex</strong> per fer el disseny d&apos;aquesta demostració web.
       </p>
     ),
   },
@@ -125,7 +125,7 @@ export default function InfoPage() {
       <header className="space-y-4">
         <h1 className="text-3xl font-semibold text-foreground">Documentació de la base de dades</h1>
         <p className="max-w-3xl text-muted-foreground">
-          Resum del projecte del Cas Pràctic 1: objectiu del sistema, entitats, relacions, procés d'inserció i consultes de
+          Resum del projecte del Cas Pràctic 1: objectiu del sistema, entitats, relacions, procés d&apos;inserció i consultes de
           suport per a la gestió del restaurant Ñam Ñam.
         </p>
       </header>

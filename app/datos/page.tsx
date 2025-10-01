@@ -142,7 +142,7 @@ export default async function DataPage() {
         <h1 className="text-3xl font-semibold text-foreground">Visualització de taules</h1>
         <p className="max-w-3xl text-muted-foreground">
           Consulta tota la informació emmagatzemada a la base de dades: categories, productes, clients, reserves i comandes.
-          Utilitza aquesta vista com a referència abans d'inserir nous registres o preparar demostracions.
+          Utilitza aquesta vista com a referència abans d&apos;inserir nous registres o preparar demostracions.
         </p>
       </header>
 

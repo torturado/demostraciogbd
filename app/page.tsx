@@ -18,7 +18,7 @@ const features = [
   {
     title: "Informació del sistema",
     description:
-      "Documentació del model, entitats i fluxos perquè l'equip entengui el context abans de connectar-se a la demo.",
+      "Documentació del model, entitats i fluxos perquè l&apos;equip entengui el context abans de connectar-se a la demo.",
     href: "/info",
     icon: "📚",
   },
@@ -102,8 +102,8 @@ export default function HomePage() {
           Stack utilitzat
         </h3>
         <p className="max-w-3xl text-sm text-muted-foreground">
-          L'aplicació està construïda amb Next.js (App Router), React Hook Form per als formularis, Prisma com a ORM i MySQL
-          com a base de dades. Tailwind CSS 4 ens permet recrear ràpidament l'estètica del projecte de referència.
+          L&apos;aplicació està construïda amb Next.js (App Router), React Hook Form per als formularis, Prisma com a ORM i MySQL
+          com a base de dades. Tailwind CSS 4 ens permet recrear ràpidament l&apos;estètica del projecte de referència.
         </p>
         <div className="flex flex-wrap gap-2 text-xs font-medium text-muted-foreground">
           {['Next.js', 'React 19', 'TypeScript', 'Prisma ORM', 'MySQL', 'Tailwind CSS 4'].map((item) => (
