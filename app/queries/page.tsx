@@ -110,13 +110,12 @@ export default function QueriesPage() {
     : undefined
 
   return (
-    <div className="space-y-8">
-      <header className="space-y-3">
-        <h1 className="text-3xl font-semibold text-stone-100">Consultes predefinides</h1>
-        <p className="max-w-3xl text-stone-300">
-          Clica sobre qualsevol de les consultes per executar la sentència SQL preparada al
-          servidor. El resultat es mostra a la taula inferior i el pots utilitzar per explicar
-          com funcionen les JOIN, les agregacions i els filtres sobre la base de dades.
+    <div className="space-y-10">
+      <header className="space-y-4">
+        <h1 className="text-3xl font-semibold text-foreground">Consultes predefinides</h1>
+        <p className="max-w-3xl text-muted-foreground">
+          Selecciona una consulta per executar la sentència SQL preparada al servidor. Els resultats es mostren sota en un
+          format de taula perquè puguis explicar les joins, els filtres i les agregacions.
         </p>
       </header>
 
@@ -128,16 +127,16 @@ export default function QueriesPage() {
           return (
             <button
               key={query.type}
-              className={`card text-left transition ${
-                isActive ? 'border-red-500/80 text-red-500' : 'hover:border-red-500/40'
+              className={`card text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+                isActive ? 'border-primary/70 shadow-glow' : 'hover:border-primary/50 hover:shadow-glow'
               }`}
               type="button"
               onClick={() => runQuery(query.type)}
               disabled={isLoading}
             >
-              <h2 className="text-lg font-semibold text-stone-100">{query.title}</h2>
-              <p className="mt-2 text-sm text-stone-300/80">{query.description}</p>
-              <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-red-500">
+              <h2 className="text-lg font-semibold text-foreground">{query.title}</h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{query.description}</p>
+              <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary">
                 {isLoading ? 'Consultant…' : 'Executar consulta'}
                 <span aria-hidden>↻</span>
               </span>
@@ -147,7 +146,7 @@ export default function QueriesPage() {
       </div>
 
       {error ? (
-        <div className="card border-red-500/40 text-sm text-red-200">
+        <div className="card border-destructive/50 text-sm text-destructive">
           <p>{error}</p>
         </div>
       ) : null}

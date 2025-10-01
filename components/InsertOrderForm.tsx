@@ -236,14 +236,14 @@ export function InsertOrderForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="card space-y-6" noValidate>
       <div className="grid gap-5 md:grid-cols-2">
         <div>
-          <label className="block text-sm font-medium text-stone-200" htmlFor="pedido-idclient">
+          <label className="block text-sm font-medium" htmlFor="pedido-idclient">
             ID client
           </label>
           <input
             id="pedido-idclient"
             type="number"
             min="1"
-            className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 placeholder:text-stone-500 focus:border-red-500 focus:outline-none"
+            className="mt-2"
             placeholder="1"
             {...register('idclient', {
               valueAsNumber: true,
@@ -252,34 +252,34 @@ export function InsertOrderForm() {
             })}
           />
           {errors.idclient ? (
-            <p className="mt-1 text-sm text-red-300">{errors.idclient.message}</p>
+            <p className="mt-1 text-sm text-destructive">{errors.idclient.message}</p>
           ) : null}
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-stone-200" htmlFor="pedido-data">
+          <label className="block text-sm font-medium" htmlFor="pedido-data">
             Data de la comanda
           </label>
           <input
             id="pedido-data"
             type="date"
-            className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 placeholder:text-stone-500 focus:border-red-500 focus:outline-none"
+            className="mt-2"
             {...register('data', {
               required: 'La data és obligatòria',
             })}
           />
-          {errors.data ? <p className="mt-1 text-sm text-red-300">{errors.data.message}</p> : null}
+          {errors.data ? <p className="mt-1 text-sm text-destructive">{errors.data.message}</p> : null}
         </div>
       </div>
 
       <div className="grid gap-5 md:grid-cols-3">
         <div>
-          <label className="block text-sm font-medium text-stone-200" htmlFor="estado-pedido">
+          <label className="block text-sm font-medium" htmlFor="estado-pedido">
             Estat
           </label>
           <select
             id="estado-pedido"
-            className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 focus:border-red-500 focus:outline-none"
+            className="mt-2"
             {...register('estado', {
               required: "L'estat és obligatori",
             })}
@@ -288,16 +288,16 @@ export function InsertOrderForm() {
             <option value="entregado">Entregat</option>
             <option value="cancelado">Cancel·lat</option>
           </select>
-          {errors.estado ? <p className="mt-1 text-sm text-red-300">{errors.estado.message}</p> : null}
+          {errors.estado ? <p className="mt-1 text-sm text-destructive">{errors.estado.message}</p> : null}
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-stone-200" htmlFor="metode_pago">
+          <label className="block text-sm font-medium" htmlFor="metode_pago">
             Mètode de pagament
           </label>
           <select
             id="metode_pago"
-            className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 focus:border-red-500 focus:outline-none"
+            className="mt-2"
             {...register('metode_pago', {
               required: 'El mètode de pagament és obligatori',
             })}
@@ -307,20 +307,20 @@ export function InsertOrderForm() {
             <option value="bizum">Bizum</option>
           </select>
           {errors.metode_pago ? (
-            <p className="mt-1 text-sm text-red-300">{errors.metode_pago.message}</p>
+            <p className="mt-1 text-sm text-destructive">{errors.metode_pago.message}</p>
           ) : null}
         </div>
 
         <div className="flex items-end">
-          <p className="w-full rounded-lg border border-stone-700/60 bg-stone-900/50 px-3 py-2 text-sm text-stone-300">
-            Total estimat: <span className="font-semibold text-red-300">{formatCurrency(computedTotal)}</span>
+          <p className="w-full rounded-lg border border-border/70 bg-background/60 px-3 py-2 text-sm text-muted-foreground">
+            Total estimat: <span className="font-semibold text-primary">{formatCurrency(computedTotal)}</span>
           </p>
         </div>
       </div>
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-stone-100">Detall de la comanda</h3>
+          <h3 className="text-lg font-semibold text-foreground">Detall de la comanda</h3>
           <button
             type="button"
             className="button-primary"
@@ -332,17 +332,17 @@ export function InsertOrderForm() {
         </div>
 
         {productsError ? (
-          <div className="card border border-red-500/40 text-sm text-red-200">
+          <div className="card border-destructive/50 text-sm text-destructive">
             <p>{productsError}</p>
           </div>
         ) : null}
 
         {loadingProducts ? (
-          <div className="card text-sm text-stone-300">Carregant productes...</div>
+          <div className="card text-sm text-muted-foreground">Carregant productes...</div>
         ) : null}
 
         {!loadingProducts && products.length === 0 ? (
-          <div className="card text-sm text-stone-300">
+          <div className="card text-sm text-muted-foreground">
             No hi ha productes registrats encara. Crea categories i productes abans de generar comandes.
           </div>
         ) : null}
@@ -354,13 +354,13 @@ export function InsertOrderForm() {
             const price = summary?.product?.preu ?? 0
 
             return (
-              <div key={field.id} className="rounded-xl border border-stone-700/60 bg-stone-900/50 p-4">
-                <div className="flex items-center justify-between text-sm text-stone-400">
+              <div key={field.id} className="rounded-xl border border-border/70 bg-background/60 p-4">
+                <div className="flex items-center justify-between text-sm text-muted-foreground">
                   <span>Producte #{index + 1}</span>
                   {fields.length > 1 ? (
                     <button
                       type="button"
-                      className="text-red-300 hover:text-red-200"
+                      className="text-destructive hover:text-destructive/80"
                       onClick={() => remove(index)}
                     >
                       Elimina
@@ -371,14 +371,14 @@ export function InsertOrderForm() {
                 <div className="mt-4 grid gap-4 md:grid-cols-3">
                   <div>
                     <label
-                      className="block text-sm font-medium text-stone-200"
+                      className="block text-sm font-medium"
                       htmlFor={`detalls-${index}-idproducte`}
                     >
                       Producte
                     </label>
                     <select
                       id={`detalls-${index}-idproducte`}
-                      className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 focus:border-red-500 focus:outline-none"
+                      className="mt-2"
                       defaultValue={field.idproducte}
                       {...register(`detalls.${index}.idproducte` as const, {
                         valueAsNumber: true,
@@ -393,13 +393,13 @@ export function InsertOrderForm() {
                       ))}
                     </select>
                     {detailError?.idproducte ? (
-                      <p className="mt-1 text-sm text-red-300">{detailError.idproducte.message}</p>
+                      <p className="mt-1 text-sm text-destructive">{detailError.idproducte.message}</p>
                     ) : null}
                   </div>
 
                   <div>
                     <label
-                      className="block text-sm font-medium text-stone-200"
+                      className="block text-sm font-medium"
                       htmlFor={`detalls-${index}-quantitat`}
                     >
                       Quantitat
@@ -408,7 +408,7 @@ export function InsertOrderForm() {
                       id={`detalls-${index}-quantitat`}
                       type="number"
                       min="1"
-                      className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 placeholder:text-stone-500 focus:border-red-500 focus:outline-none"
+                      className="mt-2"
                       placeholder="2"
                       defaultValue={field.quantitat}
                       {...register(`detalls.${index}.quantitat` as const, {
@@ -418,17 +418,17 @@ export function InsertOrderForm() {
                       })}
                     />
                     {detailError?.quantitat ? (
-                      <p className="mt-1 text-sm text-red-300">{detailError.quantitat.message}</p>
+                      <p className="mt-1 text-sm text-destructive">{detailError.quantitat.message}</p>
                     ) : null}
                   </div>
 
                   <div className="flex flex-col justify-center">
-                    <p className="text-sm text-stone-400">
-                      Preu unitari: <span className="text-stone-200">{formatCurrency(price)}</span>
+                    <p className="text-sm text-muted-foreground">
+                      Preu unitari: <span className="text-foreground">{formatCurrency(price)}</span>
                     </p>
-                    <p className="text-sm text-stone-400">
+                    <p className="text-sm text-muted-foreground">
                       Subtotal calculat:{' '}
-                      <span className="text-red-300">{formatCurrency(summary?.subtotal ?? 0)}</span>
+                      <span className="text-primary/80">{formatCurrency(summary?.subtotal ?? 0)}</span>
                     </p>
                   </div>
                 </div>
@@ -456,11 +456,11 @@ export function InsertOrderForm() {
       </div>
 
       {submission.status === 'success' ? (
-        <p className="text-sm text-emerald-300">{submission.message}</p>
+        <p className="text-sm text-emerald-400">{submission.message}</p>
       ) : null}
 
       {submission.status === 'error' ? (
-        <p className="text-sm text-red-300">{submission.message}</p>
+        <p className="text-sm text-destructive">{submission.message}</p>
       ) : null}
     </form>
   )

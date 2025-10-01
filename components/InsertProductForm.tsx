@@ -82,27 +82,27 @@ export function InsertProductForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="card space-y-5" noValidate>
+    <form onSubmit={handleSubmit(onSubmit)} className="card space-y-6" noValidate>
       <div>
-        <label className="block text-sm font-medium text-stone-200" htmlFor="nom-producte">
+        <label className="block text-sm font-medium" htmlFor="nom-producte">
           Nom del producte
         </label>
         <input
           id="nom-producte"
           type="text"
-          className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 placeholder:text-stone-500 focus:border-red-500 focus:outline-none"
+          className="mt-2"
           placeholder="Pizza quatre formatges"
           {...register('nom', {
             required: 'El nom és obligatori',
             minLength: { value: 2, message: 'Introdueix almenys 2 caràcters' },
           })}
         />
-        {errors.nom ? <p className="mt-1 text-sm text-red-300">{errors.nom.message}</p> : null}
+        {errors.nom ? <p className="mt-1 text-sm text-destructive">{errors.nom.message}</p> : null}
       </div>
 
       <div className="grid gap-5 md:grid-cols-2">
         <div>
-          <label className="block text-sm font-medium text-stone-200" htmlFor="preu">
+          <label className="block text-sm font-medium" htmlFor="preu">
             Preu (€)
           </label>
           <input
@@ -110,7 +110,7 @@ export function InsertProductForm() {
             type="number"
             step="0.01"
             min="0"
-            className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 placeholder:text-stone-500 focus:border-red-500 focus:outline-none"
+            className="mt-2"
             placeholder="12.50"
             {...register('preu', {
               valueAsNumber: true,
@@ -118,18 +118,18 @@ export function InsertProductForm() {
               min: { value: 0, message: 'El preu no pot ser negatiu' },
             })}
           />
-          {errors.preu ? <p className="mt-1 text-sm text-red-300">{errors.preu.message}</p> : null}
+          {errors.preu ? <p className="mt-1 text-sm text-destructive">{errors.preu.message}</p> : null}
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-stone-200" htmlFor="idcategoria">
+          <label className="block text-sm font-medium" htmlFor="idcategoria">
             ID categoria
           </label>
           <input
             id="idcategoria"
             type="number"
             min="1"
-            className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 placeholder:text-stone-500 focus:border-red-500 focus:outline-none"
+            className="mt-2"
             placeholder="1"
             {...register('idcategoria', {
               valueAsNumber: true,
@@ -138,14 +138,14 @@ export function InsertProductForm() {
             })}
           />
           {errors.idcategoria ? (
-            <p className="mt-1 text-sm text-red-300">{errors.idcategoria.message}</p>
+            <p className="mt-1 text-sm text-destructive">{errors.idcategoria.message}</p>
           ) : null}
         </div>
       </div>
 
       <div>
-        <span className="block text-sm font-medium text-stone-200">Disponible</span>
-        <div className="mt-2 flex gap-4 text-sm text-stone-200">
+        <span className="block text-sm font-medium">Disponible</span>
+        <div className="mt-2 flex gap-4 text-sm text-muted-foreground">
           <label className="inline-flex items-center gap-2">
             <input
               type="radio"
@@ -181,11 +181,11 @@ export function InsertProductForm() {
       </div>
 
       {submission.status === 'success' ? (
-        <p className="text-sm text-emerald-300">{submission.message}</p>
+        <p className="text-sm text-emerald-400">{submission.message}</p>
       ) : null}
 
       {submission.status === 'error' ? (
-        <p className="text-sm text-red-300">{submission.message}</p>
+        <p className="text-sm text-destructive">{submission.message}</p>
       ) : null}
     </form>
   )

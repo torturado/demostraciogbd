@@ -82,15 +82,15 @@ export function InsertClientForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="card space-y-5" noValidate>
+    <form onSubmit={handleSubmit(onSubmit)} className="card space-y-6" noValidate>
       <div>
-        <label className="block text-sm font-medium text-stone-200" htmlFor="nom">
+        <label className="block text-sm font-medium" htmlFor="nom">
           Nom i cognoms
         </label>
         <input
           id="nom"
           type="text"
-          className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 placeholder:text-stone-500 focus:border-red-500 focus:outline-none"
+          className="mt-2"
           placeholder="Laia Martí"
           {...register('nom', {
             required: 'El nom és obligatori',
@@ -98,18 +98,18 @@ export function InsertClientForm() {
           })}
         />
         {errors.nom ? (
-          <p className="mt-1 text-sm text-red-300">{errors.nom.message}</p>
+          <p className="mt-1 text-sm text-destructive">{errors.nom.message}</p>
         ) : null}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-stone-200" htmlFor="email">
+        <label className="block text-sm font-medium" htmlFor="email">
           Email de contacte
         </label>
         <input
           id="email"
           type="email"
-          className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 placeholder:text-stone-500 focus:border-red-500 focus:outline-none"
+          className="mt-2"
           placeholder="laura@example.com"
           {...register('email', {
             required: 'El correu electrònic és obligatori',
@@ -120,19 +120,19 @@ export function InsertClientForm() {
           })}
         />
         {errors.email ? (
-          <p className="mt-1 text-sm text-red-300">{errors.email.message}</p>
+          <p className="mt-1 text-sm text-destructive">{errors.email.message}</p>
         ) : null}
       </div>
 
       <div className="grid gap-5 md:grid-cols-2">
         <div>
-          <label className="block text-sm font-medium text-stone-200" htmlFor="telefon">
+          <label className="block text-sm font-medium" htmlFor="telefon">
             Telèfon
           </label>
           <input
             id="telefon"
             type="tel"
-            className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 placeholder:text-stone-500 focus:border-red-500 focus:outline-none"
+            className="mt-2"
             placeholder="612345678"
             {...register('telefon', {
               required: 'El telèfon és obligatori',
@@ -140,18 +140,18 @@ export function InsertClientForm() {
             })}
           />
           {errors.telefon ? (
-            <p className="mt-1 text-sm text-red-300">{errors.telefon.message}</p>
+            <p className="mt-1 text-sm text-destructive">{errors.telefon.message}</p>
           ) : null}
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-stone-200" htmlFor="contrasenya">
+          <label className="block text-sm font-medium" htmlFor="contrasenya">
             Contrasenya
           </label>
           <input
             id="contrasenya"
             type="password"
-            className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 placeholder:text-stone-500 focus:border-red-500 focus:outline-none"
+            className="mt-2"
             placeholder="•••••••"
             {...register('contrasenya', {
               required: 'La contrasenya és obligatòria',
@@ -159,7 +159,7 @@ export function InsertClientForm() {
             })}
           />
           {errors.contrasenya ? (
-            <p className="mt-1 text-sm text-red-300">{errors.contrasenya.message}</p>
+            <p className="mt-1 text-sm text-destructive">{errors.contrasenya.message}</p>
           ) : null}
         </div>
       </div>
@@ -179,11 +179,11 @@ export function InsertClientForm() {
       </div>
 
       {submission.status === 'success' ? (
-        <p className="text-sm text-emerald-300">{submission.message}</p>
+        <p className="text-sm text-emerald-400">{submission.message}</p>
       ) : null}
 
       {submission.status === 'error' ? (
-        <p className="text-sm text-red-300">{submission.message}</p>
+        <p className="text-sm text-destructive">{submission.message}</p>
       ) : null}
     </form>
   )
