@@ -79,22 +79,22 @@ export function InsertCategoryForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="card space-y-5" noValidate>
+    <form onSubmit={handleSubmit(onSubmit)} className="card space-y-6" noValidate>
       <div>
-        <label className="block text-sm font-medium text-stone-200" htmlFor="nom-categoria">
+        <label className="block text-sm font-medium" htmlFor="nom-categoria">
           Nom de la categoria
         </label>
         <input
           id="nom-categoria"
           type="text"
-          className="mt-2 w-full rounded-lg border border-stone-600 bg-stone-950/60 px-3 py-2 text-stone-100 placeholder:text-stone-500 focus:border-red-500 focus:outline-none"
+          className="mt-2"
           placeholder="Carns"
           {...register('nom', {
             required: 'El nom és obligatori',
             minLength: { value: 3, message: 'Introdueix almenys 3 caràcters' },
           })}
         />
-        {errors.nom ? <p className="mt-1 text-sm text-red-300">{errors.nom.message}</p> : null}
+        {errors.nom ? <p className="mt-1 text-sm text-destructive">{errors.nom.message}</p> : null}
       </div>
 
       <div className="flex flex-col gap-3 md:flex-row">
@@ -112,11 +112,11 @@ export function InsertCategoryForm() {
       </div>
 
       {submission.status === 'success' ? (
-        <p className="text-sm text-emerald-300">{submission.message}</p>
+        <p className="text-sm text-emerald-400">{submission.message}</p>
       ) : null}
 
       {submission.status === 'error' ? (
-        <p className="text-sm text-red-300">{submission.message}</p>
+        <p className="text-sm text-destructive">{submission.message}</p>
       ) : null}
     </form>
   )

@@ -136,14 +136,13 @@ export default async function DataPage() {
   const data = await getData()
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-12">
       <header className="space-y-3">
-        <p className="text-sm uppercase tracking-wide text-red-500">Panell de dades</p>
-        <h1 className="text-3xl font-semibold text-stone-100">Visualització de taules</h1>
-        <p className="max-w-3xl text-stone-300">
-          Consulta tota la informació emmagatzemada a la base de dades: categories,
-          productes, clients, reserves i comandes. Utilitza aquesta vista com a referència abans d&apos;inserir
-          nous registres.
+        <p className="text-sm uppercase tracking-[0.32em] text-primary">Panell de dades</p>
+        <h1 className="text-3xl font-semibold text-foreground">Visualització de taules</h1>
+        <p className="max-w-3xl text-muted-foreground">
+          Consulta tota la informació emmagatzemada a la base de dades: categories, productes, clients, reserves i comandes.
+          Utilitza aquesta vista com a referència abans d&apos;inserir nous registres o preparar demostracions.
         </p>
       </header>
 
@@ -151,8 +150,8 @@ export default async function DataPage() {
         {sections.map((section) => (
           <section key={section.key} className="space-y-4">
             <div className="space-y-1">
-              <h2 className="text-2xl font-semibold text-red-500">{section.title}</h2>
-              <p className="max-w-3xl text-stone-300">{section.description}</p>
+              <h2 className="text-2xl font-semibold text-primary">{section.title}</h2>
+              <p className="max-w-3xl text-muted-foreground">{section.description}</p>
             </div>
             <QueryResultTable rows={data[section.key]} title={section.title} />
           </section>

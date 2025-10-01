@@ -12,61 +12,69 @@ export const metadata = {
 
 export default function InsertPage() {
   return (
-    <div className="space-y-10">
-      <header className="space-y-3">
-        <h1 className="text-3xl font-semibold text-stone-100">Inserir registres</h1>
-        <p className="max-w-3xl text-stone-300">
-          Utilitza els següents formularis per inserir registres a la base de dades.
+    <div className="space-y-14">
+      <header className="space-y-4">
+        <h1 className="text-3xl font-semibold text-foreground">Inserir registres</h1>
+        <p className="max-w-3xl text-muted-foreground">
+          Utilitza aquests formularis per inserir informació a la base de dades i entendre com Prisma gestiona les claus,
+          validacions i relacions entre taules.
         </p>
       </header>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-red-500">Categories</h2>
-        <p className="max-w-3xl text-stone-300">
-          Defineix la categoria a la qual s&apos;assignaran els productes del menú. Ajuda a mantenir la carta
-          organitzada i evitar duplicacions.
-        </p>
+        <div className="space-y-2">
+          <h2 className="text-2xl font-semibold text-foreground">Categories</h2>
+          <p className="max-w-3xl text-muted-foreground">
+            Defineix les agrupacions del menú perquè els productes quedin classificats i sigui més senzill construir les
+            consultes.
+          </p>
+        </div>
         <InsertCategoryForm />
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-red-500">Clients</h2>
-        <p className="max-w-3xl text-stone-300">
-          L&apos;alta de clients registra les seves dades de contacte per poder associar reserves i comandes.
-        </p>
+        <div className="space-y-2">
+          <h2 className="text-2xl font-semibold text-foreground">Clients</h2>
+          <p className="max-w-3xl text-muted-foreground">
+            Registra les dades de contacte per poder associar reserves i comandes. Recorda que el correu ha de ser únic.
+          </p>
+        </div>
         <InsertClientForm />
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-red-500">Productes</h2>
-        <p className="max-w-3xl text-stone-300">
-          Afegeix articles del menú indicant el seu preu, disponibilitat i categoria. Assegura&apos;t que
-          l&apos;identificador de categoria existeix prèviament a la taula <em>categoria</em> o consulta&apos;ls
-          des de la pestanya
-          <Link className="text-red-500 hover:text-red-400" href="/datos">
-            {" "}
-            Visualitzar dades
-          </Link>
-          .
-        </p>
+        <div className="space-y-2">
+          <h2 className="text-2xl font-semibold text-foreground">Productes</h2>
+          <p className="max-w-3xl text-muted-foreground">
+            Dona d&apos;alta articles amb preu, disponibilitat i categoria. Pots consultar els identificadors des de
+            <Link className="text-primary transition-colors hover:text-primary/80" href="/datos">
+              {" "}
+              Visualitzar dades
+            </Link>
+            .
+          </p>
+        </div>
         <InsertProductForm />
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-red-500">Reserves</h2>
-        <p className="max-w-3xl text-stone-300">
-          Registra noves reserves associant-les a un client i indicant data, nombre de persones i
-          estat actual.
-        </p>
+        <div className="space-y-2">
+          <h2 className="text-2xl font-semibold text-foreground">Reserves</h2>
+          <p className="max-w-3xl text-muted-foreground">
+            Registra reserves associant-les a un client i indicant data, nombre de persones i estat actual per fer seguiment.
+          </p>
+        </div>
         <InsertReservationForm />
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-red-500">Comandes i detall</h2>
-        <p className="max-w-3xl text-stone-300">
-          Insereix comandes completes indicant total, estat, mètode de pagament i les línies associades a
-          <em>detall_pedido</em>. Cada línia referencia un producte existent i el seu subtotal.
-        </p>
+        <div className="space-y-2">
+          <h2 className="text-2xl font-semibold text-foreground">Comandes i detall</h2>
+          <p className="max-w-3xl text-muted-foreground">
+            Insereix comandes completes amb total, estat, mètode de pagament i línies de detall vinculades a productes
+            existents.
+          </p>
+        </div>
         <InsertOrderForm />
       </section>
     </div>
