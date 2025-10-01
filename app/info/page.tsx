@@ -1,6 +1,6 @@
 const sections = [
   {
-    heading: "Necessitat d&apos;enregistrament i entitats involucrades",
+    heading: "Necessitat d'enregistrament i entitats involucrades",
     body: (
       <p className="text-muted-foreground">
         El restaurant Ñam Ñam necessita digitalitzar la gestió de clients, reserves i comandes per donar resposta a l&apos;auge del
